@@ -6,8 +6,8 @@ const int xPin = A3;
 const int yPin = A4;
 const int zPin = A5;
 
-const int jumpThreshold = 450;  // Adjust this value based on your calibration
-const int fallThreshold = 450;  // Adjust this value based on your calibration
+const int jumpThreshold = 550;  // Adjust this value based on your calibration
+const int fallThreshold = 350;  // Adjust this value based on your calibration
 
 bool inAir = false;  // To keep track of whether the jump is in progress
 
@@ -36,16 +36,19 @@ void setup() {
   myDFPlayer.volume(30);  // Volume level between 0 and 30
 
   // Delay to ensure everything is set up correctly
-  delay(1000);
+  
 }
 
 void loop() {
   int zValue = analogRead(zPin);
+inAir = false;
 
   if (!inAir && zValue > jumpThreshold) {
     // Detected the start of the jump
     inAir = true;
     Serial.println("Jump detected!");
     myDFPlayer.play(4);
+    
   }
+ 
   }
