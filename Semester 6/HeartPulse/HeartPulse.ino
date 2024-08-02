@@ -2,7 +2,7 @@
 
 const int PulseWire = A0;  // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
 const int LED13 = 13;      // The on-board Arduino LED, close to PIN 13.
-int Threshold = 300;       // Determine which Signal to "count as a beat" and which to ignore.
+int Threshold = 410;       // Determine which Signal to "count as a beat" and which to ignore.
 
 PulseSensorPlayground pulseSensor;  // Creates an instance of the PulseSensorPlayground object called "pulseSensor"
 
