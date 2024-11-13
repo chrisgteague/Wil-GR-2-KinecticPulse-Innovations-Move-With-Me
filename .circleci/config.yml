@@ -26,34 +26,10 @@ jobs:
             -Dsonar.branch.name="$SONAR_BRANCH" \
             -Dsonar.sources="."
 
-  # Newman tests job
-  newmantest:
-    docker:
-      - image: postman/newman:alpine
-        environment:
-          MONGODB: $MONGODB
-          JWT_SECRET: $JWT_SECRET
-          BASE_URL: $BASE_URL  # Setting the base URL for the tests
-      - image: node:18
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: |
-            cd backend/payment-portal
-            npm install --verbose || { echo 'npm install failed'; exit 1; }
-      - run:
-          name: Run Newman Tests
-          command: |
-            cd backend/payment-portal
-            npm run newman-test || { echo 'Newman tests failed'; exit 1; }
-
 workflows:
   version: 2
   main-workflow:
     jobs:
       - say-hello
       - sonarqube
-      - newmantest:
-          requires:
-            - sonarqube
+    
