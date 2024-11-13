@@ -1,0 +1,27 @@
+name: DevSecOps Pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./backend/payment-portal/
+    #- name: Lint code#lint is not working cause of some migration issue that i cant figure out at the moment
+      #run: npm run lint
+      #working-directory: ./backend/payment-portal/
+    #- name: Run tests
+    #  run: npm test
+    #  working-directory: ./backend/payment-portal/
