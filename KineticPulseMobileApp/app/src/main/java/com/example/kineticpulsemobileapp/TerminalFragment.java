@@ -64,6 +64,22 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private int jumpRight = 0;
     private int middleJump = 0;
 
+    private Button btnLEDOptions;
+    private View ledOptionsView;
+    //LED Buttons-----------------------
+    private Button btnWhite;
+    private Button btnRed;
+    private Button btnBlue;
+    private Button btnGreen;
+    private Button btnTopaz;
+    private Button btnLilac;
+    private Button btnRainbow;
+    private Button btnSeizureMode;
+    private Button btnLEDOff;
+    //LED Buttons-----------------------
+
+    private Button btnLogin;
+
     private Button btnJumpUp;
 
     private Button btnJumpLeft;
@@ -165,6 +181,21 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         receiveText.setTextColor(getResources().getColor(R.color.colorRecieveText)); // set as default color to reduce number of spans
         receiveText.setMovementMethod(ScrollingMovementMethod.getInstance());
 
+        ledOptionsView = view.findViewById(R.id.ledOptions);
+        btnLEDOptions = view.findViewById(R.id.hideLEDView);
+        //LED Buttons-----------------------
+        btnWhite = view.findViewById(R.id.btnWhite);
+        btnRed = view.findViewById(R.id.btnRed);
+        btnGreen = view.findViewById(R.id.btnGreen);
+        btnBlue = view.findViewById(R.id.btnBlue);
+        btnTopaz = view.findViewById(R.id.btnTopaz);
+        btnLilac = view.findViewById(R.id.btnLilac);
+        btnRainbow = view.findViewById(R.id.btnRainbow);
+        btnSeizureMode = view.findViewById(R.id.btnSeizureMode);
+        btnLEDOff = view.findViewById(R.id.btnLEDOff);
+        //LED Buttons-----------------------
+
+        btnLogin = view.findViewById(R.id.btnLogin);
         ivJump = view.findViewById(R.id.ivJump);
         showView = view.findViewById(R.id.showView);
         hideView = view.findViewById(R.id.hideView);
@@ -206,6 +237,46 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             send("3");             // Send the value "3"
 
         });
+        btnLogin.setOnClickListener(v ->{
+
+        });
+        btnLEDOptions.setOnClickListener(v -> {
+            if (ledOptionsView.getVisibility() == View.GONE) {
+                ledOptionsView.setVisibility(View.VISIBLE);
+            } else {
+                ledOptionsView.setVisibility(View.GONE);
+            }
+        });
+
+        //LED Buttons-----------------------
+        btnWhite.setOnClickListener(v ->{
+            send("w");
+        });
+        btnRed.setOnClickListener(v ->{
+            send("r");
+        });
+        btnBlue.setOnClickListener(v ->{
+            send("b");
+        });
+        btnGreen.setOnClickListener(v ->{
+            send("g");
+        });
+        btnTopaz.setOnClickListener(v ->{
+            send("t");
+        });
+        btnLilac.setOnClickListener(v ->{
+            send("l");
+        });
+        btnRainbow.setOnClickListener(v ->{
+            send("a");
+        });
+        btnSeizureMode.setOnClickListener(v ->{
+            send("m");
+        });
+        btnLEDOff.setOnClickListener(v ->{
+            send("o");
+        });
+
 
 
         View sendBtn = view.findViewById(R.id.send_btn);
