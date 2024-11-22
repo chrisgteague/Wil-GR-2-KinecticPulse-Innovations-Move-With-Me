@@ -32,17 +32,23 @@ BluetoothSerial SerialBT;
 #define RAINBOW_SPEED  50 
 //unsigned long previousMillis = 0;
 
-// Thresholds
-const int jumpThreshold = -5;
-const int yjumpThreshold = 5;  
-
-// const int jumpThreshold = 5;
-// const int yjumpThreshold = -6;
+// Testing Thresholds
+//const int jumpThreshold = -5;
+//const int yjumpThreshold = 5;  
 //const int fallThreshold = -10;
-//const int yThreshold = -12;
+//const int yThreshold = 5;
 
+// Proper Thrrsholsd
+const int jumpThreshold = 5;
+const int yjumpThreshold = -6;
 const int fallThreshold = -10;
-const int yThreshold = 5;
+const int yThreshold = -12;
+
+// da led variables
+bool lighting = LOW;
+char a;
+char b;
+char temp;
 
 //value storage
 int jump = 0;
@@ -89,11 +95,10 @@ void setup() {
       ;
   }
   myDFPlayer.volume(30);  // Set volume to 30 (0~30).
+  lighting = HIGH;
+  a = 'a';
 }
-bool lighting = LOW;
-char a;
-char b;
-char temp;
+
 void startShow(int i) {
   switch(i){
 
@@ -257,6 +262,7 @@ void loop() {
         case 'r':
             Red = HIGH;
             SerialBT.println("CHANGING TO RED");
+            Blue = LOW;
             Green = LOW;
             off = LOW;
             rgb = LOW;
@@ -270,6 +276,7 @@ void loop() {
         case 'g':
             Green = HIGH;
             SerialBT.println("CHANGING TO GREEN");
+            Blue = LOW;
             Red = LOW;
             off = LOW;
             rgb = LOW;
@@ -280,9 +287,24 @@ void loop() {
             a = '0';
             lighting = LOW;
             break;
+         case 'b':
+            Blue = HIGH;
+            SerialBT.println("CHANGING TO BLUE");
+            Green = LOW;
+            Red = LOW;
+            off = LOW;
+            rgb = LOW;
+            Rainbow = LOW;
+            Topaz = LOW;
+            Lilac = LOW;
+            White = LOW;
+            a = '0';
+            lighting = LOW;
+            break;   
         case 'o':
             off = HIGH;
             SerialBT.println("TURNING OFF LEDs..");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             rgb = LOW;
@@ -296,6 +318,7 @@ void loop() {
         case 'a':
             Rainbow = HIGH;
             SerialBT.println("RAINBOW GO BRRRRR");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             rgb = LOW;
@@ -308,7 +331,8 @@ void loop() {
             break;
         case 'm':
             rgb = HIGH;
-            SerialBT.println("SEIZURE MODE");
+            SerialBT.println("Mixed MODE");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             Rainbow = LOW;
@@ -321,7 +345,8 @@ void loop() {
             break;
           case 'w':
             White = HIGH;
-            SerialBT.println("Racist MODE");
+            SerialBT.println("White MODE");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             Rainbow = LOW;
@@ -335,6 +360,7 @@ void loop() {
           case 't':
             Topaz = HIGH;
             SerialBT.println("Topaz MODE");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             Rainbow = LOW;
@@ -348,6 +374,7 @@ void loop() {
           case 'l':
             Lilac = HIGH;
             SerialBT.println("Lilac MODE");
+            Blue = LOW;
             Red = LOW;
             Green = LOW;
             Rainbow = LOW;
