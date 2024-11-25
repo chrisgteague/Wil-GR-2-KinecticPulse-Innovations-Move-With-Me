@@ -97,7 +97,7 @@ public class LoginScreen extends AppCompatActivity {
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric Authentication")
-                .setSubtitle("Authenticate using your fingerprint or face")
+                .setSubtitle("Authenticate using your fingerprint")
                 .setNegativeButtonText("Cancel")
                 .build();
 

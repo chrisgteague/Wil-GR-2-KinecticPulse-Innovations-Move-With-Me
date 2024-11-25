@@ -237,9 +237,11 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             send("3");             // Send the value "3"
 
         });
-        btnLogin.setOnClickListener(v ->{
-
+        btnLogin.setOnClickListener(v -> {
+            Intent loginIntent = new Intent(getActivity(), LoginScreen.class);
+            startActivity(loginIntent);
         });
+
         btnLEDOptions.setOnClickListener(v -> {
             if (ledOptionsView.getVisibility() == View.GONE) {
                 ledOptionsView.setVisibility(View.VISIBLE);
@@ -509,6 +511,16 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
                 }
             });
         }
+    }
+
+    public void changeLanguage(String languageCode) {
+        LocaleHelper.setLocale(getContext(), languageCode);
+
+
+        // Restart activity to apply changes
+        Intent intent = requireActivity().getIntent();
+        requireActivity().finish();
+        startActivity(intent);
     }
 
 }
